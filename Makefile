@@ -47,6 +47,13 @@ endif
 ROGUEPORYSCRIPTSDIR := data/scripts/Rogue
 PORYSCRIPTARGS := -fc $(ROGUEPORYSCRIPTSDIR)/Strings/poryscript_font_config.json
 
+# Add the command config file based on the OS
+ifeq ($(OS), Windows_NT)
+PORYSCRIPTARGS += -cc tools/poryscript/poryscript-windows/command_config.json
+else
+PORYSCRIPTARGS += -cc tools/poryscript/poryscript-linux/command_config.json
+endif
+
 ifeq ($(EXPANSION), 1)
 PORYSCRIPTARGS += -s ROGUE_VERSION=ROGUE_VERSION_EXPANSION
 endif
