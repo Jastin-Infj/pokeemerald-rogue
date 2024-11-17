@@ -303,6 +303,7 @@ static const u8 sTeraformZeroDescription[] = _("Removes weather and terrain.");
 static const u8 sPoisonPuppeteerDescription[] = _("Confuses poisoned foes.");
 
 static const u8 sForecastPriorityDescription[] = _("Weather moves go first.");
+static const u8 sUnkownOriDescription[] = _("Unknown unique ability.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -620,6 +621,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_POISON_PUPPETEER] = _("Poison Puppeteer"),
     
     [ABILITY_FORECAST_PRIORITY] = _("Instant Forecast"),
+    [ABILITY_UNKOWN_ORI] = _("Unknown Ori"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -937,6 +939,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_POISON_PUPPETEER] = _("PoisnPuppter"),
     
     [ABILITY_FORECAST_PRIORITY] = _("Instant Forecast"),
+    [ABILITY_UNKOWN_ORI] = _("Unknown Ori"),
 };
 #endif
 
@@ -1255,4 +1258,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_POISON_PUPPETEER] = sPoisonPuppeteerDescription,
     
     [ABILITY_FORECAST_PRIORITY] = sForecastPriorityDescription,
+    [ABILITY_UNKOWN_ORI] = sUnkownOriDescription,
 };

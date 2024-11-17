@@ -297,6 +297,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_EARTH_EATER] = 7,
 
     [ABILITY_FORECAST_PRIORITY] = 9,
+    [ABILITY_UNKOWN_ORI] = 3,
 };
 
 static const u16 sEncouragedEncoreEffects[] =

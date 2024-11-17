@@ -4809,6 +4809,7 @@ static bool32 IsWeatherAffectedMove(u16 move)
     return FALSE;
 }
 
+// 優先度を上げる
 s8 GetMovePriority(u32 battler, u16 move)
 {
     s8 priority;

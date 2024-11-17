@@ -5764,12 +5764,12 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
 
 #if P_FAMILY_CASTFORM
 #define CASTFORM_MISC_INFO                                      \
-        .baseHP        = 70,                                    \
+        .baseHP        = 90,                                    \
         .baseAttack    = 70,                                    \
-        .baseDefense   = 70,                                    \
+        .baseDefense   = 85,                                    \
         .baseSpeed     = 70,                                    \
-        .baseSpAttack  = 70,                                    \
-        .baseSpDefense = 70,                                    \
+        .baseSpAttack  = 110,                                   \
+        .baseSpDefense = 85,                                    \
         .catchRate = 45,                                        \
         .expYield = 147,                                        \
         .evYield_HP = 1,                                        \
@@ -5780,7 +5780,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,                      \
         .growthRate = GROWTH_MEDIUM_FAST,                       \
         .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_AMORPHOUS },  \
-        .abilities = { ABILITY_FORECAST, ABILITY_NONE },        \
+        .abilities = { ABILITY_FORECAST, ABILITY_NONE , ABILITY_FORECAST_PRIORITY },        \
         .speciesName = _("Castform"),                           \
         .cryId = CRY_CASTFORM,                                  \
         .natDexNum = NATIONAL_DEX_CASTFORM,                     \

@@ -9555,6 +9555,25 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchIn::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_ScriptingAbilityUnkownOri::
+	call BattleScript_AbilityPopUp
+	waitanimation
+	call BattleScript_ScriptingAbilityUnkownOri_Step1
+BattleScript_ScriptingAbilityUnkownOri_Step1:
+	setbyte sSTAT_ANIM_PLAYED, FALSE
+	modifybattlerstatstage BS_ATTACKER, STAT_DEF, DECREASE, 1, BattleScript_ScriptingAbilityUnkownOri_Step2, ANIM_ON
+BattleScript_ScriptingAbilityUnkownOri_Step2:
+	modifybattlerstatstage BS_ATTACKER, STAT_SPDEF, DECREASE, 1, BattleScript_ScriptingAbilityUnkownOri_Step3, ANIM_ON
+BattleScript_ScriptingAbilityUnkownOri_Step3:
+	setbyte sSTAT_ANIM_PLAYED, FALSE
+	modifybattlerstatstage BS_ATTACKER, STAT_ATK, INCREASE, 1, BattleScript_ScriptingAbilityUnkownOri_Step4, ANIM_ON
+BattleScript_ScriptingAbilityUnkownOri_Step4:
+	modifybattlerstatstage BS_ATTACKER, STAT_SPATK, INCREASE, 1, BattleScript_ScriptingAbilityUnkownOri_Step5, ANIM_ON
+BattleScript_ScriptingAbilityUnkownOri_Step5:
+	modifybattlerstatstage BS_ATTACKER, STAT_SPEED, INCREASE, 1, BattleScript_ScriptingAbilityUnkownOri_End, ANIM_ON
+BattleScript_ScriptingAbilityUnkownOri_End:
+	end3
+
 BattleScript_ScriptingAbilityStatRaise::
 	copybyte gBattlerAbility, sBATTLER
 	call BattleScript_AbilityPopUp
