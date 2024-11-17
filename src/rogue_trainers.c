@@ -23,6 +23,7 @@
 #include "rogue_query_script.h"
 #include "rogue_settings.h"
 #include "rogue_trainers.h"
+#include "gba/isagbprint.h"
 
 #define TRAINER_SHINY_PERC 25
 
@@ -1995,18 +1996,57 @@ u8 Rogue_CreateTrainerParty(u16 trainerNum, struct Pokemon* party, u8 monCapacit
     if(Rogue_IsBattleSimTrainer(trainerNum))
     {
         // Player takes half of the enemy mons at random
-        u8 i, count;
+        u8 i , count;
 
-        for(count = 0; count < (monCount / 2);)
+        struct Pokemon* tempparty1 = AllocZeroed(sizeof(struct Pokemon) * monCount);
+        struct Pokemon* tempparty2 = AllocZeroed(sizeof(struct Pokemon) * monCount);
+
+        // Player rental pokemons
+        for(count = 0; count < monCount;)
         {
             i = RogueRandom() % monCount;
 
-            if(GetMonData(&gEnemyParty[i], MON_DATA_SPECIES) != SPECIES_NONE)
+            if(GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE)
             {
-                CopyMon(&gPlayerParty[count], &gEnemyParty[i], sizeof(struct Pokemon));
-                ZeroMonData(&gEnemyParty[i]);
+                CopyMon(&tempparty1[count], &party[i], sizeof(struct Pokemon));
+                ZeroMonData(&party[i]);
                 ++count;
             }
+        }
+
+        // rental update
+        {
+            monCount = CreateTrainerPartyInternal(trainerNum, party, 0, monCapacity, firstTrainer, 0);
+            u32 pokeballId = Rogue_GetTrainerPokeballId(trainerNum);
+            for(i = 0; i < monCount; ++i)
+                SetMonData(&party[i], MON_DATA_POKEBALL, &pokeballId);
+        }
+
+        // Enemy rental pokemons
+        for(count = 0; count < monCount;)
+        {
+            i = RogueRandom() % monCount;
+
+            if(GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE)
+            {
+                CopyMon(&tempparty2[count], &party[i], sizeof(struct Pokemon));
+                ZeroMonData(&party[i]);
+                ++count;
+            }
+        }
+
+        // single or double battle
+        if(gBattleTypeFlags & BATTLE_TYPE_DOUBLE) {
+            monCount = FRONTIER_DOUBLES_PARTY_SIZE;
+        } else {
+            monCount = FRONTIER_PARTY_SIZE;
+        }
+
+        // Copy the mons back
+        for(i = 0; i < monCount; ++i)
+        {
+            CopyMon(&gPlayerParty[i], &tempparty1[i], sizeof(struct Pokemon));
+            CopyMon(&gEnemyParty[i], &tempparty2[i], sizeof(struct Pokemon));
         }
 
         CompactPartySlots();
