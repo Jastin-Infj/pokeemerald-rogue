@@ -10108,6 +10108,7 @@ static inline uq4_12_t GetAttackerAbilitiesModifier(u32 battlerAtk, uq4_12_t typ
     return UQ_4_12(1.0);
 }
 
+// ダメージ受ける側の処理
 static inline uq4_12_t GetDefenderAbilitiesModifier(u32 move, u32 moveType, u32 battlerAtk, u32 battlerDef, uq4_12_t typeEffectivenessModifier, u32 abilityDef)
 {
     switch (abilityDef)
@@ -10137,6 +10138,8 @@ static inline uq4_12_t GetDefenderAbilitiesModifier(u32 move, u32 moveType, u32 
         if (IS_MOVE_SPECIAL(move))
             return UQ_4_12(0.5);
         break;
+    case ABILITY_BONDS_OF_LOVE:
+        return UQ_4_12(0.75);
     }
     return UQ_4_12(1.0);
 }
@@ -10150,6 +10153,9 @@ static inline uq4_12_t GetDefenderPartnerAbilitiesModifier(u32 battlerPartnerDef
     {
     case ABILITY_FRIEND_GUARD:
         return UQ_4_12(0.75);
+        break;
+    case ABILITY_BONDS_OF_LOVE:
+        return UQ_4_12(0.5);
         break;
     }
     return UQ_4_12(1.0);
