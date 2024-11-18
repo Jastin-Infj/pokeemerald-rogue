@@ -9667,13 +9667,20 @@ BattleScript_AttackerAbilityStatRaiseEnd3::
 BattleScript_SwitchInAbilityMsg::
 	call BattleScript_AbilityPopUp
 	printfromtable gSwitchInAbilityStringIds
+	call BattleScript_SwitchInAbilityMsg_Step1
+BattleScript_SwitchInAbilityMsg_Step1:
+	setbyte sSTAT_ANIM_PLAYED, FALSE
+	modifybattlerstatstage BS_ATTACKER, STAT_DEF, INCREASE, 2, BattleScript_SwitchInAbilityMsg_Step2, ANIM_ON 
+BattleScript_SwitchInAbilityMsg_Step2:
+	modifybattlerstatstage BS_ATTACKER, STAT_SPDEF, INCREASE, 2, BattleScript_SwitchInAbilityMsg_End, ANIM_ON
+BattleScript_SwitchInAbilityMsg_End:
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
 BattleScript_SwitchInAbilityMsgRet::
 	call BattleScript_AbilityPopUp
 	printfromtable gSwitchInAbilityStringIds
-	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_SwitchInAbilityMsg_Step1
 	return
 
 BattleScript_ActivateAsOne::
