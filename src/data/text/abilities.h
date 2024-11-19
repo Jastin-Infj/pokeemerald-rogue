@@ -305,6 +305,7 @@ static const u8 sPoisonPuppeteerDescription[] = _("Confuses poisoned foes.");
 static const u8 sForecastPriorityDescription[] = _("Weather moves go first.");
 static const u8 sUnkownOriDescription[] = _("Ability is increased by a mysterious reason.");
 static const u8 sBondsOfLoveDescription[] = _("Reduces damage to allies.");
+static const u8 sSnipteronDescription[] = _("critical and atk boost.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -624,6 +625,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_FORECAST_PRIORITY] = _("Instant Forecast"),
     [ABILITY_UNKOWN_ORI] = _("Unknown Ori"),
     [ABILITY_BONDS_OF_LOVE] = _("Bonds of Love"),
+    [ABILITY_SNIPTERON] = _("Snipperon"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -943,6 +945,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_FORECAST_PRIORITY] = _("Instant Forecast"),
     [ABILITY_UNKOWN_ORI] = _("Unknown Ori"),
     [ABILITY_BONDS_OF_LOVE] = _("Bonds of Love"),
+    [ABILITY_SNIPTERON] = _("Snipperon"),
 };
 #endif
 
@@ -1263,4 +1266,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_FORECAST_PRIORITY] = sForecastPriorityDescription,
     [ABILITY_UNKOWN_ORI] = sUnkownOriDescription,
     [ABILITY_BONDS_OF_LOVE] = sBondsOfLoveDescription,
+    [ABILITY_SNIPTERON] = sSnipteronDescription,
 };

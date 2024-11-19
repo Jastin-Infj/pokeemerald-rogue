@@ -5550,7 +5550,7 @@ static inline bool32 CanFirstMonBoostHeldItemRarity(void)
         return FALSE;
     else if ((OW_COMPOUND_EYES < GEN_9) && GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPOUND_EYES)
         return TRUE;
-    else if ((OW_SUPER_LUCK == GEN_8) && GetMonAbility(&gPlayerParty[0]) == ABILITY_SUPER_LUCK)
+    else if ((OW_SUPER_LUCK == GEN_8) && (GetMonAbility(&gPlayerParty[0]) == ABILITY_SUPER_LUCK || GetMonAbility(&gPlayerParty[0]) == ABILITY_SNIPTERON))
         return TRUE;
     return FALSE;
 }

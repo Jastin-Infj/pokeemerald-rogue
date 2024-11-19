@@ -1991,6 +1991,7 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
                     + 2 * BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)
                     //+ 2 * (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerAtk) == AFFECTION_FIVE_HEARTS) // TODO -MAKE THIS A FLAT 10% BECAUSE THIS IS CRAZY
                     + (abilityAtk == ABILITY_SUPER_LUCK)
+                    + 3 * (abilityAtk == ABILITY_SNIPTERON)
                     + gBattleStruct->bonusCritStages[gBattlerAttacker];
 
         if(GetBattlerSide(gBattlerAttacker) == B_SIDE_OPPONENT)
@@ -7176,7 +7177,11 @@ static void Cmd_switchineffects(void)
 
         // Don't activate switch-in abilities if the opposing field is empty.
         // This could happen when a mon uses explosion and causes everyone to faint.
-        if ((battlerAbility == ABILITY_INTIMIDATE || battlerAbility == ABILITY_SUPERSWEET_SYRUP || battlerAbility == ABILITY_DOWNLOAD)
+        if (
+            (battlerAbility == ABILITY_INTIMIDATE || 
+            battlerAbility == ABILITY_SUPERSWEET_SYRUP || 
+            battlerAbility == ABILITY_DOWNLOAD ||\
+            battlerAbility == ABILITY_SNIPTERON)
          && !IsBattlerAlive(BATTLE_OPPOSITE(battler))
          && !IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(battler))))
         {
@@ -11554,7 +11559,9 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
     {
         if (gSideTimers[GetBattlerSide(battler)].mistTimer
             && !certain && gCurrentMove != MOVE_CURSE
-            && !(battler == gBattlerTarget && GetBattlerAbility(gBattlerAttacker) == ABILITY_INFILTRATOR))
+            && !(battler == gBattlerTarget && GetBattlerAbility(gBattlerAttacker) == ABILITY_INFILTRATOR)
+            && !(battler == gBattlerTarget && GetBattlerAbility(gBattlerAttacker) == ABILITY_SNIPTERON)
+            )
         {
             if (flags == STAT_CHANGE_ALLOW_PTR)
             {

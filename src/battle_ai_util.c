@@ -298,7 +298,8 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
 
     [ABILITY_FORECAST_PRIORITY] = 9,
     [ABILITY_UNKOWN_ORI] = 7,
-    [ABILITY_BONDS_OF_LOVE] = 7,
+    [ABILITY_BONDS_OF_LOVE] = 0,
+    [ABILITY_SNIPTERON] = 8,
 };
 
 static const u16 sEncouragedEncoreEffects[] =
